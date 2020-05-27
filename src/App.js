@@ -1,16 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import ProductCard from './components/ProductCard';
 import './App.css';
 import ProductList from './components/ProductList';
+import SignInForm from './components/layout/SignInForm';
 
 function App() {
   return (
       <Router>
-        <div className="App">
-          <div className="Main-container">
-            
+        <div className="App">            
             <Navbar />
             
             <Route exact path="/" render={props => (
@@ -26,9 +24,7 @@ function App() {
             )}/>
 
             <Route exact path="/buy" render={props => (
-              <div>
                 <ProductList />
-              </div>
             )}/>
 
             <Route exact path="/sell" render={props => (
@@ -38,15 +34,10 @@ function App() {
             )}/>
 
             <Route exact path="/account" render={props => (
-              <div>
-                Interface for imteracting with user account
-              </div>
+                <SignInForm />
             )} />
-
-          </div>
         </div>
       </Router>
-
   );
 }
 
