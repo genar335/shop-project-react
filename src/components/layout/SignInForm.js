@@ -40,8 +40,12 @@ export class SignInForm extends React.Component {
                 console.log(res)
                 sessionStorage.setItem('jwtToken', res.data.jwt)
                 console.log(sessionStorage.jwtToken)
+                alert(`You've succesfully logged in!`)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                alert(`${error}`)
+            })
     }
     
 

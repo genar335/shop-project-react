@@ -39,7 +39,7 @@ export class ProductCard extends React.Component {
 
 
         return(
-            <div id="mainConatiner">
+            <div id="mainContainer">
                 <h2>{this.props.productName}</h2>
                 <div className="smaller-cont">
                     <img src={`${this.getMainImg(this.props.productMainImage)}`} 

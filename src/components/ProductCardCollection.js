@@ -11,11 +11,11 @@ export class ProductCardCollection extends React.Component {
                 category={ele.Category}
                 subcategory={ele.Subcategory}
                 type={ele.Type}
-                productImages={ele.productImages}
-                productMainImage={ele.productMainImage}
+                productImages={ele.photos}
+                productMainImage={ele.MainPhoto}
                 productImagesURL={[]}
-                productName={ele.productName}
-                productDescription={ele.productDescription}
+                productName={ele.Name}
+                productDescription={ele.Description}
             />
         ))
     }
