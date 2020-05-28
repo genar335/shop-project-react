@@ -17,11 +17,12 @@ export class ItemToSell extends React.Component {
             <div id="mainContainer">
                 <img src={testIMG} alt="here be kartinka" className="testImage"/>
                 <div id="smallContainer">
-                    <h2>Product Name</h2>
-                    <p>If you are not with me, then you are my enemy.</p>
+                    <h2 className="sContainerText">Product Name</h2>
+                    <p className="sContainerText">If you are not with me, then you are my enemy.</p>
+                    <h3 className="sContainerText">$399</h3>
                 </div>
                 <div id="likesContainer">
-                    <p>(...)</p>
+                    <p id="pDescription">(...)</p> {/* */}
                     <img src={testHeart} alt="here be like" id="fave"/>
                 </div>
             </div>

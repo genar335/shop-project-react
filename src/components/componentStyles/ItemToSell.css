@@ -8,9 +8,33 @@
 }
 
 #smallContainer {
-    
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;
+}
+
+.sContainerText {
+    color: black;
+    margin: 0 0 1rem 1rem;
+}
+
+#likesContainer {
+    height: 10%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#pDescription {
+    margin: 0 10px 0 0;
+    width: 2rem;
+    height: 2rem;
 }
 
 #fave {
-    width: 10%;
+    height: 1.5rem;
+    width: 1.5rem;
 }
