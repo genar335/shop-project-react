@@ -21,7 +21,7 @@ export class Navbar extends Component {
         const navHeight = nav.clientHeight
         linkContainer.style.height = `${(clientHeight - navHeight)}px`
         linkContainer.style.top = `${navHeight}px`
-        //linkContainer.style.visibility = 'hidden'
+        linkContainer.style.visibility = 'hidden'
     }
     
     burgerAppearance = event => {
@@ -30,11 +30,13 @@ export class Navbar extends Component {
         console.log(burgerMenu)
         const linkMenu = document.getElementById('link-container')
         
-        /* linkMenu.style.visibility === 'hidden' ? 
+        linkMenu.style.visibility === 'hidden' ? 
             linkMenu.style.visibility = 'visible' : 
-            linkMenu.style.visibility = 'hidden' */
+            linkMenu.style.visibility = 'hidden'
 
-        const animaDuration = 200 //in ms
+
+        console.log(linkMenu.style.visibility)
+        /* const animaDuration = 200 //in ms
         
         if ((linkMenu.style.opacity == 0) && (event.target.id != 'link-container')){
             linkMenu.animate([
@@ -56,7 +58,7 @@ export class Navbar extends Component {
             })
             linkMenu.onanimationend = linkMenu.style.opacity = 0
             linkMenu.style.visibility = 'hidden'
-        }
+        } */
         
     }
 
