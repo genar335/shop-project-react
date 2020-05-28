@@ -1,0 +1,16 @@
+#mainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.testImage {
+    width: 40%;
+}
+
+#smallContainer {
+    
+}
+
+#fave {
+    width: 10%;
+}
