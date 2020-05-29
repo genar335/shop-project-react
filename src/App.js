@@ -5,6 +5,7 @@ import './App.css';
 import ProductList from './components/ProductList';
 import SignInForm from './components/layout/SignInForm';
 import ItemToSell from './components/ItemToSell';
+import ProductCarousel from './components/ProductCarousel';
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
 
             <Route exact path="/account" render={props => (
                 <SignInForm />
+            )} />
+
+            <Route exact path="/carousel" render={props => (
+                <ProductCarousel />
             )} />
         </div>
       </Router>

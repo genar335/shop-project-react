@@ -4,18 +4,19 @@ import ProductCard from './ProductCard'
 export class ProductCardCollection extends React.Component {
 
 
-    render() {        
+    render() {       
+        console.log(this.props)
         return this.props.products.map(ele => (
             <ProductCard
                 id={ele.id}
-                category={ele.Category}
-                subcategory={ele.Subcategory}
+                category={ele.category}
+                subcategory={ele.subcategory}
                 type={ele.Type}
                 productImages={ele.photos}
-                productMainImage={ele.MainPhoto}
+                productMainImage={ele.mainPhoto}
                 productImagesURL={[]}
-                productName={ele.Name}
-                productDescription={ele.Description}
+                productName={ele.name}
+                productDescription={ele.description}
             />
         ))
     }
