@@ -26,7 +26,10 @@ function App() {
             )}/>
 
             <Route exact path="/buy" render={props => (
-                <ProductList />
+                <div>
+                  <ProductCarousel />
+                  <ProductList />
+                </div>
             )}/>
 
             <Route exact path="/sell" render={props => (

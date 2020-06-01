@@ -1,7 +1,8 @@
 import React from 'react'
 import Axios from 'axios'
-import Touch, { Swipeable, defineSwipe } from 'react-touch'
-import circle from '../GAssests/circle.svg'
+// A premade Carousel
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, ButtonPlay, Image, Dot, DotGroup } from 'pure-react-carousel';import circle from '../GAssests/circle.svg'
+import 'pure-react-carousel/dist/react-carousel.es.css';
 import './componentStyles/ProductCarousel.css'
 
 export class ProductCarousel extends React.Component {
@@ -15,7 +16,6 @@ export class ProductCarousel extends React.Component {
             ImgObjects: [],
             ImgIndicators: []
         }
-        this.swipe = defineSwipe({swipeDisctance: 50})
         this.amount = 10
         
     }
@@ -28,7 +28,7 @@ export class ProductCarousel extends React.Component {
 
     componentDidMount = () => {
         this.getProductsData(this.urlForProducts)
-    }
+    } 
 
     componentWillUnmount = () =>
         clearInterval(this.interval)
@@ -47,12 +47,10 @@ export class ProductCarousel extends React.Component {
     }
 
     createProductImage(element, index) {
-        const imgContainer = document.getElementById('Product-IMG-Cont')
         const productIMG = document.createElement('img')
         productIMG.src = `${element}`
         productIMG.classList.add("Feature-IMG")
         productIMG.id = `img-${index}`
-        imgContainer.appendChild(productIMG)
         this.setState({ ImgObjects: [...this.state.ImgObjects, productIMG] })
     }
 
@@ -68,37 +66,56 @@ export class ProductCarousel extends React.Component {
 
     appendFeaturedImages = () => {
         this.state.feauterdImgSrc.forEach( (element, index) => {
-            this.creatCircle(index)
+            //this.creatCircle(index)
             this.createProductImage(element, index)
         });
-        this.interval = setInterval(() => {
-            this.moveCarousel()
-        }, 30);
     }
 
-    moveCarousel = () => {
-        const carouselIMG = document.getElementById('Product-IMG-Cont')
-        carouselIMG.style.transform = `translateX(-${this.amount}px)`
-        this.amount += 1
-        console.log(carouselIMG.style)
-    }
+
     
-
-    handleLeftSwipe = () => {
-        
-    }
 
     render() {
         return(
-            <Swipeable config={this.swipe} onSwipeLeft={this.handleLeftSwipe}>
-                <div id="Carousel-Cont" onTouchStart={this.handleDrag}>
-                    <div id="Product-IMG-Cont">
-                    </div>
+            <CarouselProvider className="Carousel"
+                naturalSlideHeight={300}
+                naturalSlideWidth={400}
+                // Is it moving
+                isPlaying={true}
+                playDirection={"forward"}
+                totalSlides={this.state.ImgObjects.length}
+                // Speed at which slides are animated
+                interval={2000}
+                dragEnabled={true}
+                touchEnabled={true}
+            >
+                <Slider className="tcarousel-r">
+                    {this.state.ImgObjects.map( (ele, mapIndex) => (
+                        <Slide index={mapIndex}>
+                            
+                            <Image 
+                                src={ele.src}
+                                alt="Null"
+                                className="Feature-IMG"
+                            />
+                            
+                        </Slide>
+                    ))}
                     
-                    <div id="IMG-indicators-cont">
-                    </div>
-                </div>
-            </Swipeable>
+                </Slider>
+                <DotGroup 
+                    className="Ind"
+                    showAsSelectedForCurrentSlideOnly="true"
+                    >
+                        {/* {this.state.ImgObjects.map( (ele, index) => (
+                            <Dot slide={index}>
+                                {index+1}
+                            </Dot>
+                        ))} */}
+                </DotGroup>
+                <ButtonBack className="c-btn">Back</ButtonBack>
+                <ButtonPlay className="c-btn">Play</ButtonPlay>
+                <ButtonNext className="c-btn">Next</ButtonNext>
+            </CarouselProvider>
         )
     }
 }
