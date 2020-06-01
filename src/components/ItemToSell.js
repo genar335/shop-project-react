@@ -28,7 +28,7 @@ export class ItemToSell extends React.Component {
             </div>
         );
     }
-
+np
 }
 
 export default ItemToSell;
