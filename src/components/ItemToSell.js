@@ -22,7 +22,7 @@ export class ItemToSell extends React.Component {
                     <h3 className="sContainerText">$399</h3>
                 </div>
                 <div id="likesContainer">
-                    <p id="pDescription">(...)</p> {/* */}
+                    <p id="pDescription">(...)</p>
                     <img src={testHeart} alt="here be like" id="fave"/>
                 </div>
             </div>
