@@ -67,6 +67,7 @@ input:focus {
     width: 25%;
     height: 1.5rem;
     align-self: center;
+    margin-top: 1.5rem;
 }
 
 #submit-btn:focus{
