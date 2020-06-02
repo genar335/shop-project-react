@@ -1,8 +1,8 @@
 import React from 'react';
 import './componentStyles/ItemToSell.css';
 import testHeart from '../GAssests/heart.svg';
-import testDownArrow from '../GAssests/downArrow.svg'
-import ItemToSellRefined from './ItemToSellRefined'
+import testDownArrow from '../GAssests/downArrow.svg';
+import testUpArrow from '../GAssests/upArrow.svg';
 
 export class ItemToSell extends React.Component {
 
@@ -20,7 +20,7 @@ export class ItemToSell extends React.Component {
         console.log(this.state)
     }
 
-    refiningProductDescriptions = (desc) => {
+    condenseProductDescriptions = (desc) => {
         if ((desc) && (desc.length > 180)) {
             desc = desc.slice(0, 180) + '...'
         }
@@ -34,12 +34,12 @@ export class ItemToSell extends React.Component {
 
     render() {
         return (
-            <div>
-                <div id="mainContainer">
+            this.state.expanded === false ? 
+                <div className="mainContainer">
                     <img src={this.getMainImageURL()} alt="here be kartinka" className="itemImage"/>
                     <div id="smallContainer">
                         <h2 className="sContainerText">{this.props.name}</h2>
-                        <p className="sContainerText">{this.refiningProductDescriptions(this.props.description)}</p>
+                        <p className="sContainerText">{this.condenseProductDescriptions(this.props.description)}</p>
                         <h3 className="sContainerText">{this.props.price}</h3>
                     </div>
                     <div id="picContainer">
@@ -50,23 +50,26 @@ export class ItemToSell extends React.Component {
                         <img src={testDownArrow} alt="here be arrow" id="arrow" onClick={this.toggleCard}></img>
                     </div>
                 </div>
-                <div>
-                    <ItemToSellRefined
-                    expanded={this.state.expanded}
-                    id = {this.props.id}
-                    name = {this.props.name}
-                    price = {this.props.price}
-                    description = {this.props.description}
-                    mainPhoto = {this.props.mainPhoto}
-                    likes = {this.props.likes}
-                    featured = {this.props.featured}
-                    extraInfo = {this.props.extraInfo}
-                    />
+            :
+                <div className="mainContainer">
+                    <img src={this.getMainImageURL()} alt="here be kartinka" className="itemImage"/>
+                    <div id="smallContainer">
+                        <h2 className="sContainerText">{this.props.name}</h2>
+                        <p className="sContainerText">{this.props.description}</p>
+                        <h3 className="sContainerText">{this.props.price}</h3>
+                        <p className="sContainerText">{this.props.extraInfo}</p>
+                    </div>
+                    <div id="picContainer">
+                        <div id="likesContainer">
+                            <p id="nrLikes">({this.props.likes})</p>
+                            <img src={testHeart} alt="here be like" id="fave"/>
+                        </div>
+                        <img src={testUpArrow} alt="here be arrow" id="arrow" onClick={this.toggleCard}></img>
+                    </div>
                 </div>
-            </div>
         );
     }
-np
+
 }
 
 export default ItemToSell;
