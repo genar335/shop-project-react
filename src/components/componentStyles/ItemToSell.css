@@ -1,9 +1,13 @@
-#mainContainer {
+div.mainContainer {
     display: flex;
     flex-direction: row;
+    background-color: whitesmoke;
+    margin: 1em 2em 1em 2em;
+    padding: 1em 2em 1em 2em;
+    align-items: flex-start;
 }
 
-.testImage {
+img.itemImage {
     width: 40%;
 }
 
@@ -11,30 +15,46 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 60%;
+    justify-content: flex-start;
+    width: 50%;
 }
 
 .sContainerText {
     color: black;
     margin: 0 0 1rem 1rem;
+    height: 100%;
+    flex-grow: inherit;
+}
+
+#picContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: stretch;
+    width: 10%
 }
 
 #likesContainer {
-    height: 10%;
-    width: auto;
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
-#pDescription {
+#nrLikes {
     margin: 0 10px 0 0;
     width: 2rem;
     height: 2rem;
 }
 
 #fave {
+    margin: 0 0 0 10px;
     height: 1.5rem;
     width: 1.5rem;
+}
+
+#arrow {
+    width: 1.7rem;
+    height: 1.7rem;
+    align-self: flex-end;
 }
