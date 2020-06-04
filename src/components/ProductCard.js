@@ -40,15 +40,12 @@ export class ProductCard extends React.Component {
 
         return(
             <div id="mainContainer">
-                <h2>{this.props.productName}</h2>
+                
                 <div className="smaller-cont">
                     <img src={`${this.getMainImg(this.props.productMainImage)}`} 
                         alt="" className="MainIMG"/>
-                    {/*<img src={`${this.devURL}${this.props.productImagesURL[0]}`} alt="here be the img" className="otherIMGS" /> */}
-                    <p>
-                        {this.refiningProductDescriptions(this.props.productDescription)}
-                    </p>
                 </div>
+                <h2 id="product-description" >{this.props.productName}</h2>
             </div>
         )
     }

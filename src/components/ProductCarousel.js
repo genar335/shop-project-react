@@ -84,7 +84,7 @@ export class ProductCarousel extends React.Component {
                 playDirection={"forward"}
                 totalSlides={this.state.ImgObjects.length}
                 // Speed at which slides are animated
-                interval={2000}
+                interval={3000}
                 dragEnabled={true}
                 touchEnabled={true}
             >

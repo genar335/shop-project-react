@@ -1,8 +1,12 @@
 
 #mainContainer {
-    background-color: whitesmoke;
-    margin: 1em 2em 1em 2em;
-    padding: 1em 2em 1em 2em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .smaller-cont {
@@ -11,12 +15,15 @@
     align-items: center;
 }
 
-.MainIMG {
-    width: 50%;
+#product-description {
+  margin: 0;
+
 }
 
-p {
-    margin-left: 2em;
+.MainIMG {
+  object-fit: cover;
+  display: block;
+  max-height: 10rem;
 }
 
 /* test settings for cards on larger screens (width > 1200px) */
@@ -27,7 +34,7 @@ p {
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
       #mainContainer {
-          margin: 1rem 10rrem 1rem 10rem;
+
       }
 }
 
@@ -50,21 +57,11 @@ p {
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
     #mainContainer {
-        margin: 2rem 0.1rem 2em 0.1rem;
+
         display: flex;
         flex-direction: column;
     }
-    .smaller-cont {
-        flex-direction: column;
-    }
     
-    .MainIMG {
-        width: 100%;
-    }
-
-    p {
-        margin: 1rem 0 0 0;
-    }
 }
 
 /* Portrait */
@@ -123,7 +120,7 @@ p {
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
     #mainContainer {
-        margin: 0rem 0rem 2rem 0rem;
+        margin: 0rem 0rem 0rem 0rem;
     }
 }
 

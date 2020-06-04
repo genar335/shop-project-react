@@ -2,6 +2,8 @@ import React from 'react'
 import ProductCardCollection from './ProductCardCollection'
 import PropTypes, { element } from 'prop-types'
 
+import './componentStyles/ProductList.css'
+
 
 
 export class ProductList extends React.Component {
@@ -31,7 +33,7 @@ export class ProductList extends React.Component {
 
     render() {
         return(
-            <div>
+            <div id="Big-Container-for-Cards">
                 <ProductCardCollection
                     products={this.state.products}
                 />
