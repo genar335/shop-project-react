@@ -32,20 +32,25 @@ export class SignInForm extends React.Component {
     }
 
     loggingIn = () => {
-        Axios.post('http://localhost:1337/auth/local', {
-            identifier: this.state.username,
-            password: this.state.pass
-        })
-            .then(res => {
-                console.log(res)
-                sessionStorage.setItem('jwtToken', res.data.jwt)
-                console.log(sessionStorage.jwtToken)
-                alert(`You've succesfully logged in!`)
+        if ((this.state.username.length > 0) || (this.state.pass.length > 0)) {
+            Axios.post('http://localhost:1337/auth/local', {
+                identifier: this.state.username,
+                password: this.state.pass
             })
-            .catch(error => {
-                console.log(error)
-                alert(`${error}`)
-            })
+                .then(res => {
+                    console.log(res)
+                    sessionStorage.setItem('jwtToken', res.data.jwt)
+                    console.log(sessionStorage.jwtToken)
+                    alert(`You've succesfully logged in!`)
+                })
+                .catch(error => {
+                    console.log(error)
+                    alert(`${error}`)
+                })
+        } else {
+            alert('Please, enter something')
+            return
+        }
     }
     
 

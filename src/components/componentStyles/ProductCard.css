@@ -1,12 +1,12 @@
 
 #mainContainer {
-    padding-right: 0.5em;
-    padding-left: 0.5em;
-    margin: 0px 0px 0px 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  margin: 0px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .smaller-cont {
