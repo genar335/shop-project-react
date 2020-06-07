@@ -31,9 +31,9 @@ export class Navbar extends Component {
                     
                         <div id="link-container" onClick={this.burgerAppearance} >
                             
-                            <Link className="nav-link" to="/buy">Home</Link>
+                            <Link className="nav-link" to="/home">Home</Link>
                             <Link className="nav-link" to="/search">Search</Link>
-                            <Link className="nav-link" to="/home">Buy</Link>
+                            <Link className="nav-link" to="/buy">Buy</Link>
                             <Link className="nav-link" to="/sell">Sell</Link>
                             <Link className="nav-link" to="/account">Account</Link>
                         </div>  
