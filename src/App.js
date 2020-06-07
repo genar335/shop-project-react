@@ -8,6 +8,7 @@ import SellInterface from './components/SellInterface';
 import ProductCarousel from './components/ProductCarousel';
 
 function App() {
+  console.log(sessionStorage)
   return (
       <Router>
         <div className="App">            
