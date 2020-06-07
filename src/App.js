@@ -5,7 +5,6 @@ import './App.css';
 import ProductList from './components/ProductList';
 import SignInForm from './components/layout/SignInForm';
 import SellInterface from './components/SellInterface';
-//import ItemToSell from './components/ItemToSell';
 import ProductCarousel from './components/ProductCarousel';
 
 function App() {

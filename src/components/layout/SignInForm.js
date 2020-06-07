@@ -1,6 +1,7 @@
 import React from 'react'
 import '../componentStyles/SignInForm.css'
 import Axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 export class SignInForm extends React.Component {
 
@@ -8,7 +9,8 @@ export class SignInForm extends React.Component {
         super(props)
         this.state = {
             username: '',
-            pass: ''
+            pass: '',
+            redirect: false
         }
     }
     
@@ -42,6 +44,8 @@ export class SignInForm extends React.Component {
                     sessionStorage.setItem('jwtToken', res.data.jwt)
                     console.log(sessionStorage.jwtToken)
                     alert(`You've succesfully logged in!`)
+                    this.setState({ redirect: true })
+
                 })
                 .catch(error => {
                     console.log(error)
@@ -56,6 +60,11 @@ export class SignInForm extends React.Component {
 
 
     render(){
+
+        if (this.state.redirect) {
+            return <Redirect to="/home" />
+        }
+
         return(
             <div className="SignInMainContainer" onSubmit={this.handleSubmitt}>
                 <form className="Log-in-form">
@@ -77,6 +86,7 @@ export class SignInForm extends React.Component {
                     <input type="submit" name="submittedInfo" id="submit-btn" value="Log in!"></input>
                 </form>
             </div>
+            
         )
     }
 }
