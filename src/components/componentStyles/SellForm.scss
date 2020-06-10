@@ -1,0 +1,72 @@
+$btnColor: #c7e0c5;
+$txtColor: #000;
+
+.modalContainerBackground {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+.modalContainer {
+    background-color: whitesmoke;
+    color: black;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 2rem 0;
+    z-index: 3;
+    width: 65%;
+
+    .itemForm {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+
+        #sellFormHeader {
+            color: $txtColor;
+        }
+
+        .inputDiv {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 0.3em 0 0.3em 0;
+
+            label {
+                font-size: larger;
+                margin-bottom: 0.3em;
+            }
+           
+            .itemInput {
+                background-color: white;
+                color: $txtColor;
+                width: 55%;
+                border-style: inset;
+                border-width: 0.07em;
+                padding: 0 0.5em 0 0.5em;
+            }
+
+        }
+    
+        #submitButton {
+            background-color: $btnColor;
+            color: $txtColor;
+            margin: 0.2em 0 0.2em 0;
+            padding: 0.3em 0.5em 0.3em 0.5em;
+            border-style: solid;
+            border-color: black;
+            border-width: 0.07em;
+        }
+
+        #submitButton:hover {
+            background-color: #fff;
+        }
+
+    }
+
+}

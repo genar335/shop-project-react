@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import './componentStyles/SellForm.css';
+import './componentStyles/SellForm.scss';
 
 export class SellForm extends React.Component {
 
@@ -66,27 +66,29 @@ export class SellForm extends React.Component {
 
     render() {
         return(
-            <div className="mainContainer" onSubmit={this.handleSubmit}>
-                <form className="itemForm">
-                    <h3>Sell something!</h3>
-                    <div className="inputDiv" id="nameField">
-                        <label className="itemNameInput">Name:</label>
-                        <input type="text" name="itemName" className="itemInput" onChange={this.handleChangeOfValueItemName}></input>
-                    </div>
-                    <div className="inputDiv" id="descriptionField">
-                        <label className="itemDescriptionInput">Description:</label>
-                        <input type="text" name="itemDescription" className="itemInput" onChange={this.handleChangeOfValueItemDescription}></input>
-                    </div>
-                    <div className="inputDiv" id="priceField">
-                        <label className="itemPriceInput">Price:</label>
-                        <input type="text" name="itemPrice" className="itemInput" onChange={this.handleChangeOfValueItemPrice}></input>
-                    </div>
-                    <div className="inputDiv" id="extraInfoField">
-                        <label className="itemExtraInfoInput">Extra Info:</label>
-                        <input type="text" name="itemExtraInfo" className="itemInput" onChange={this.handleChangeOfValueItemExtraInfo}></input>
-                    </div>
-                    <input type="submit" name="submittedData" id="submitButton" value="Submit!"></input>
-                </form>
+            <div className="modalContainerBackground">
+                <div className="modalContainer" onSubmit={this.handleSubmit}>
+                    <form className="itemForm">
+                        <h3 id="sellFormHeader">Sell something!</h3>
+                        <div className="inputDiv" id="nameField">
+                            <label className="itemNameInput">Name:</label>
+                            <input type="text" name="itemName" className="itemInput" onChange={this.handleChangeOfValueItemName}></input>
+                        </div>
+                        <div className="inputDiv" id="descriptionField">
+                            <label className="itemDescriptionInput">Description:</label>
+                            <input type="text" name="itemDescription" className="itemInput" onChange={this.handleChangeOfValueItemDescription}></input>
+                        </div>
+                        <div className="inputDiv" id="priceField">
+                            <label className="itemPriceInput">Price:</label>
+                            <input type="text" name="itemPrice" className="itemInput" onChange={this.handleChangeOfValueItemPrice}></input>
+                        </div>
+                        <div className="inputDiv" id="extraInfoField">
+                            <label className="itemExtraInfoInput">Extra Info:</label>
+                            <input type="text" name="itemExtraInfo" className="itemInput" onChange={this.handleChangeOfValueItemExtraInfo}></input>
+                        </div>
+                        <input type="submit" name="submittedData" id="submitButton" value="Submit!"></input>
+                    </form>
+                </div>
             </div>
         );
     }

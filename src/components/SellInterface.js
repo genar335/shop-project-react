@@ -29,7 +29,7 @@ export class SellInterface extends React.Component {
     showSellForm = () => {
         this.setState({sellFormVisible: true});
     }
-
+    
     render() {
         console.log(this.state);
 
