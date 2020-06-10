@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import './componentStyles/SellInterface.css';
 import ItemToSell from './ItemToSell';
+import SellForm from './SellForm';
 
 export class SellInterface extends React.Component {
 
@@ -10,7 +11,8 @@ export class SellInterface extends React.Component {
         this.devURL = 'http://localhost:1337/products';
 
         this.state = {
-            productObjs: []
+            productObjs: [],
+            sellFormVisible: false
         };
     }
 
@@ -24,13 +26,21 @@ export class SellInterface extends React.Component {
         this.getItemsData(this.devURL);
     }
 
+    showSellForm = () => {
+        this.setState({sellFormVisible: true});
+    }
+
     render() {
         console.log(this.state);
 
         return (
             <div>
                 <h1>Sell your shit</h1>
-                <button id="addButton">+ Add some shit</button>
+                <button onClick={this.showSellForm} id="addButton">+ Add some shit</button>
+                {this.state.sellFormVisible ?
+                <SellForm/>
+                :
+                null}
                 {this.state.productObjs.map(ele => (
                 <ItemToSell
                     id = {ele.id}
