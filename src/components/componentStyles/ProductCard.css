@@ -1,5 +1,4 @@
-
-#mainContainer {
+.mainContainerWithACard {
   padding-right: 0.5em;
   padding-left: 0.5em;
   margin: 0px 0px 0px 0px;
@@ -10,14 +9,28 @@
 }
 
 .smaller-cont {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#heart {
+  position: absolute;
+  width: 2rem;
+  margin: 0.5rem 0.5rem 0 0;
+  filter: invert(1) blur(0.09rem);
 }
 
 #product-description {
   margin: 0;
 
+}
+
+#heart.heart-checked {
+  position: absolute;
+  width: 2rem;
+  margin: 0.5rem 0.5rem 0 0;
+  filter: none;
 }
 
 .MainIMG {
@@ -33,7 +46,7 @@
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
-      #mainContainer {
+      .mainContainer {
 
       }
 }
@@ -44,7 +57,7 @@
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
-      #mainContainer {
+      .mainContainer {
         margin: 1rem 10rem 1rem 10rem;
       }
 }
@@ -56,7 +69,7 @@
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
-    #mainContainer {
+    .mainContainer {
 
         display: flex;
         flex-direction: column;
@@ -79,9 +92,7 @@
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) { 
-    #mainContainer {
-        display: flex;
-    }
+    
 }
 
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
@@ -119,9 +130,7 @@
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
-    #mainContainer {
-        margin: 0rem 0rem 0rem 0rem;
-    }
+
 }
 
 /* Portrait */
