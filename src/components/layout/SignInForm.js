@@ -75,7 +75,7 @@ export class SignInForm extends React.Component {
         console.log(sessionStorage)
 
         if (this.state.redirect) {
-            return <Redirect to="/home" />
+            return <Redirect to="/account" />
         }
 
         if ((sessionStorage !== undefined) && !(sessionStorage.jwtToken)) {
