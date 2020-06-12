@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './componentStyles/ProductCard.css'
 import Heart from '../GAssests/heart.svg'
+import HeartIcon from './layout/HeartIcon'
 import Axios from 'axios'
 
 
@@ -11,7 +12,20 @@ export class ProductCard extends React.Component {
         super(props)
         this.devURL = 'http://localhost:1337'
         this.state = {
-            heartIsChecked: false
+            heartIsChecked: this.checkingWhetherTheProductIsLovedEnough()
+        }
+    }
+
+    checkingWhetherTheProductIsLovedEnough = () => {
+        if (this.props.liked) {
+            const hearty = document.getElementById('heart')
+            console.log(hearty.style)
+            hearty.classList.add("heart-checked")
+            hearty.style.width = '100px'
+            console.log(hearty.style)
+            return true
+        } else {
+            return false
         }
     }
 
@@ -62,10 +76,7 @@ export class ProductCard extends React.Component {
                 likedProductsArray = res.data.likedProducts.arrayOfIDs
                 this.updatingLikedProducts(likedProductsArray, idOfClikedHeart);
             })
-          .catch(err => console.log(err))
-
-
-        
+          .catch(err => console.log(err))        
     }
 
     updatingLikedProducts(previousArrayOfLikeProducts, idOfClikedHeart) {
@@ -90,13 +101,16 @@ export class ProductCard extends React.Component {
 
     render() { 
         this.getImagesURL()
-
+        console.log('From a card')
+        console.log(this.props.liked)
+        console.log(this.state.heartIsChecked)
         return(
             <div className="mainContainerWithACard" id={this.props.id} >
                 <div className="smaller-cont">
                     <img src={`${this.getMainImg(this.props.productMainImage)}`} 
                         alt="" className="MainIMG"/>
-                    <img src={Heart} alt="Oops" id="heart" onClick={this.handleHeart} ></img>
+                    <img src={Heart} alt="Oops" id="heart" onClick={this.handleHeart} liked={this.props.liked} ></img>
+                    <HeartIcon />
                 </div>
                 <h2 id="product-description" >{this.props.productName}</h2>
             </div>

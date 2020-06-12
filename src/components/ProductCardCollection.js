@@ -17,6 +17,7 @@ export class ProductCardCollection extends React.Component {
                 productImagesURL={[]}
                 productName={ele.name}
                 productDescription={ele.description}
+                liked={this.props.liked}
             />
         ))
     }

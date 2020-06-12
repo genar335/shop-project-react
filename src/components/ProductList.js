@@ -25,6 +25,7 @@ export class ProductList extends React.Component {
                 console.log(response.data)
             })
     } */
+    
     componentDidMount() {
         fetch(`${this.devURL}products`)
             .then(response => response.json())

@@ -17,7 +17,7 @@ export class AccountInterface extends Component {
         }
     }
 
-    handleClick = e => 
+    componentWillMount = () =>
         this.fetchUserData()
 
     fetchUserData = () => 
@@ -31,35 +31,27 @@ export class AccountInterface extends Component {
     
     
     workingWithUData = uData => {
-        console.log(uData)
         this.setState({ uName: uData.username })
         this.setState({ email: uData.email })
         this.setState({ createdAt: Date(uData.createdAt) })
         this.setState({ ownedProduct: uData.products })
-        this.setState({ likedProducts: this.formattingLikedProducts(uData.likedProducts.arrayOfIDs.split(',')) })
-        console.log(this.state)
+        this.settingLikedProducts(uData.likedProducts.arrayOfIDs.split(','))
     }
 
-    formattingLikedProducts = likedProducts => {
-        console.log(likedProducts)
-        // ⬇️⬆️ Array of ids of products which user has liked
-        // ⬇️   Same array without duplicates
-        let likedProductsFiltered = Array.from(new Set(likedProducts))
-        console.log(`Set of like products:`)
-        console.log(likedProductsFiltered)
-        // Fetching all the products
-        console.log(this.fetchAllProducts())
-       
-        return []
+    GetFilteredProducts = async likedProducts => {
+        likedProducts = Array.from(new Set(likedProducts))
+        const queryForLikedProducts = likedProducts.join('&id_in=')
+        const answer = await Axios.get(`${this.devURL}/products?id_in=${queryForLikedProducts}`)
+            .then(res => res.data)
+            .catch(err => alert(err))
+        return answer
+    }
+
+    settingLikedProducts = async likedProducts => {
+        const filteredProducts = await this.GetFilteredProducts(likedProducts)
+        this.setState({ likedProducts: [...filteredProducts] })
     }
         
-    fetchAllProducts = () =>  {
-        Axios.get(`${this.devURL}/products`)
-            .then(res =>  console.log(res))
-            .catch(err => alert(err))
-    }
-
-    // testio = data => data.forEach(ele => console.log(ele))
 
     render() {
 
@@ -73,10 +65,8 @@ export class AccountInterface extends Component {
                     <h2>Date of account creation: {this.state.createdAt}</h2>
                     <div id="likedProductsContainer">
                         <h2>You liked these:</h2>
-                        {this.state.likedProducts.map(ele => (
-                            <p>{ele}</p>
-                        ))}
-                    </div>
+                        <ProductCardCollection products={this.state.likedProducts} liked={true} />
+                    </div> 
                     <div id="ownedProductsContainer">
                         <h2>Your items:</h2>
                         <ProductCardCollection products={this.state.ownedProduct}/>
