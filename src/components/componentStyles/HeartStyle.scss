@@ -1,0 +1,12 @@
+$heart-side: 1.5rem;
+
+.heartIcon {
+    width: $heart-side;
+    height: $heart-side;
+    position: absolute;
+    margin: 0.5rem 0.5rem;
+        &:hover {
+            width: calc(0.5rem + #{$heart-side});
+            height: calc(0.5rem + #{$heart-side});
+        }
+}

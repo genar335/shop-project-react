@@ -18,11 +18,6 @@ export class ProductCard extends React.Component {
 
     checkingWhetherTheProductIsLovedEnough = () => {
         if (this.props.liked) {
-            const hearty = document.getElementById('heart')
-            console.log(hearty.style)
-            hearty.classList.add("heart-checked")
-            hearty.style.width = '100px'
-            console.log(hearty.style)
             return true
         } else {
             return false
@@ -99,20 +94,29 @@ export class ProductCard extends React.Component {
         .catch(error => console.log('error', error));
     }
 
+    componentWillMount = () => 
+        this.parsingLikedState()
+
+    parsingLikedState = () => {
+        if (this.props.liked) {
+            this.setState({ heartIsChecked: true })
+        } else if (this.props.liked === undefined) {
+            this.setState({ heartIsChecked: false })
+        }
+    }
     render() { 
         this.getImagesURL()
-        console.log('From a card')
+        //this.parsingLikedState()
         console.log(this.props.liked)
-        console.log(this.state.heartIsChecked)
         return(
             <div className="mainContainerWithACard" id={this.props.id} >
                 <div className="smaller-cont">
                     <img src={`${this.getMainImg(this.props.productMainImage)}`} 
                         alt="" className="MainIMG"/>
-                    <img src={Heart} alt="Oops" id="heart" onClick={this.handleHeart} liked={this.props.liked} ></img>
-                    <HeartIcon />
+                    {/* <img src={Heart} alt="Oops" id="heart" onClick={this.handleHeart} liked={this.props.liked} ></img> */}
+                    <HeartIcon liked={this.state.heartIsChecked} />
                 </div>
-                <h2 id="product-description" >{this.props.productName}</h2>
+                <h2 id="product-description">{this.props.productName}</h2>
             </div>
         )
     }

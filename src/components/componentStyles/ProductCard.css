@@ -14,24 +14,24 @@
   justify-content: flex-end;
 }
 
-#heart {
+/* #heart {
   position: absolute;
   width: 2rem;
   margin: 0.5rem 0.5rem 0 0;
   filter: invert(1) blur(0.09rem);
-}
+} */
 
 #product-description {
   margin: 0;
 
 }
 
-#heart.heart-checked {
+/* #heart.heart-checked {
   position: absolute;
   width: 2rem;
   margin: 0.5rem 0.5rem 0 0;
   filter: none;
-}
+} */
 
 .MainIMG {
   object-fit: cover;

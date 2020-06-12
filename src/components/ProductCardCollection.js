@@ -5,7 +5,7 @@ export class ProductCardCollection extends React.Component {
 
 
     render() {       
-        console.log(this.props)
+        console.log(this.props.liked)
         return this.props.products.map(ele => (
             <ProductCard
                 id={ele.id}
