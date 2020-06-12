@@ -35,8 +35,26 @@ export class HeartIcon extends Component {
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
     }
+    
+    destroyingLove = (arrayToModify, idToRemove) => {
+        const arrayToAdd = arrayToModify.filter(ele => ele !== idToRemove)
+        Axios({
+            method: 'put',
+            url: `http://localhost:1337/users/${sessionStorage.uID}`,
+            headers: {
+                Authorization: `Bearer ${sessionStorage.jwtToken}`
+            },
+            data: {
+                likedProducts: {
+                    arrayOfIDs: arrayToAdd
+                }
+            }
+        })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+    }
 
-    fetchingExistingLove = idOfClikedHeart => {
+    fetchingExistingLove = (idOfClikedHeart, tag) => {
         console.log(idOfClikedHeart)
         let likedProductsArray = []
         Axios.get(`http://localhost:1337/users/${sessionStorage.uID}`, {
@@ -48,25 +66,33 @@ export class HeartIcon extends Component {
                 likedProductsArray = [...res.data.likedProducts.arrayOfIDs, idOfClikedHeart]
                 likedProductsArray = Array.from(new Set(likedProductsArray))
                 console.log(likedProductsArray)
-                this.addingMoreLove(likedProductsArray)
+                tag ?
+                this.addingMoreLove(likedProductsArray) :
+                this.destroyingLove(likedProductsArray, idOfClikedHeart)
             })
           .catch(err => console.log(err))        
     }
 
     activatingHeart = eventTarget => {
         this.setState({ heartState: true })
-        console.log(eventTarget.parentNode.parentNode)
-        this.fetchingExistingLove(eventTarget.parentNode.parentNode.id)
+        console.log(eventTarget)
+        this.fetchingExistingLove(eventTarget.parentNode.parentNode.id, true)
     }
 
-    handleHeartIconClick = e => {
-        (this.state.heartState === true) ? 
-            this.setState({ heartState: false }) :
-            this.activatingHeart(e.target)
+    deactivatingTheHeart = eventTarget => {
+        this.setState({ heartState: false })
+        console.log('heya')
+        console.log(eventTarget.parentNode.parentNode.id)
+        this.fetchingExistingLove(eventTarget.parentNode.parentNode.id, false)
     }
+
+    handleHeartIconClick = e => 
+        (this.state.heartState === true) ? 
+            this.deactivatingTheHeart(e.target) :
+            this.activatingHeart(e.target)
+    
 
     render() {
-        console.log()
         if (this.state.heartState) {
             return(
                 <img src={HeartFilled100} 
