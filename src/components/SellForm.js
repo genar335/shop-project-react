@@ -1,97 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 import './componentStyles/SellForm.scss';
 
-export class SellForm extends React.Component {
+function SellForm(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            description: '',
-            price: '',
-            extraInfo: ''
-        };
-    }
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [extraInfo, setExtraInfo] = useState('');
 
-    handleChangeOfValueItemName = (event) => {
+    const handleChangeOfValueItemName = (event) => {
         console.log(event.target);
-        this.setState({name: event.target.value});
+        console.log(event.target.value);
+        setName(event.target.value);
         console.log('---');
     }
 
-    handleChangeOfValueItemDescription = (event) => {
+    const handleChangeOfValueItemDescription = (event) => {
         console.log(event.target);
-        this.setState({description: event.target.value});
+        console.log(event.target.value);
+        setDescription(event.target.value);
         console.log('---');
     }
 
-    handleChangeOfValueItemPrice = (event) => {
+    const handleChangeOfValueItemPrice = (event) => {
         console.log(event.target);
-        this.setState({price: event.target.value});
+        console.log(event.target.value);
+        setPrice(event.target.value);
         console.log('---');
     }
 
-    handleChangeOfValueItemExtraInfo = (event) => {
+    const handleChangeOfValueItemExtraInfo = (event) => {
         console.log(event.target);
-        this.setState({extraInfo: event.target.value});
+        console.log(event.target.value);
+        setExtraInfo(event.target.value);
         console.log('---');
     }
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        this.submitForm();
+        submitForm();
     }
 
-    submitForm = () => {
-        let itemObj;
-        if((this.state.name > 0) && (this.state.description > 0) && (this.state.price > 0)) {
+    const submitForm = () => {
+        //let itemObj;
+        if((name.length > 0) && (description.length > 0) && (price.length > 0)) {
             Axios.post('http://localhost:1337/products', {
-                Name: this.state.name,
-                description: this.state.description,
-                price: this.state.price,
-                extraInfo: this.state.extraInfo
+                Name: name,
+                description: description,
+                price: price,
+                extraInfo: extraInfo
             }).then(res => {
+                //itemObj = res;
                 console.log(res);
-                itemObj = res;
             }).catch(error => {
                 console.log(error);
                 alert(`${error}`);
             });
-        } else {
+        } /*else {
             alert('You can\'t sell nothing.');
             return;
-        }
+        }*/
     }
 
-    render() {
-        return(
-            <div className="modalContainerBackground">
-                <div className="modalContainer" onSubmit={this.handleSubmit}>
+    
+        return (
+            <div className="modalContainerBackground" id="testModal" onSubmit={handleSubmit}>
+                <div className="modalContainer">
                     <form className="itemForm">
                         <h3 id="sellFormHeader">Sell something!</h3>
                         <div className="inputDiv" id="nameField">
                             <label className="itemNameInput">Name:</label>
-                            <input type="text" name="itemName" className="itemInput" onChange={this.handleChangeOfValueItemName}></input>
+                            <input type="text" name="itemName" className="itemInput" onChange={handleChangeOfValueItemName}></input>
                         </div>
                         <div className="inputDiv" id="descriptionField">
                             <label className="itemDescriptionInput">Description:</label>
-                            <input type="text" name="itemDescription" className="itemInput" onChange={this.handleChangeOfValueItemDescription}></input>
+                            <input type="text" name="itemDescription" className="itemInput" onChange={handleChangeOfValueItemDescription}></input>
                         </div>
                         <div className="inputDiv" id="priceField">
                             <label className="itemPriceInput">Price:</label>
-                            <input type="text" name="itemPrice" className="itemInput" onChange={this.handleChangeOfValueItemPrice}></input>
+                            <input type="text" name="itemPrice" className="itemInput" onChange={handleChangeOfValueItemPrice}></input>
                         </div>
                         <div className="inputDiv" id="extraInfoField">
                             <label className="itemExtraInfoInput">Extra Info:</label>
-                            <input type="text" name="itemExtraInfo" className="itemInput" onChange={this.handleChangeOfValueItemExtraInfo}></input>
+                            <input type="text" name="itemExtraInfo" className="itemInput" onChange={handleChangeOfValueItemExtraInfo}></input>
                         </div>
-                        <input type="submit" name="submittedData" id="submitButton" value="Submit!"></input>
+                        <div className="buttonContainer">
+                            <input type="submit" name="submittedData" id="submitButton" value="Submit!"></input>
+                            
+                        </div>
                     </form>
                 </div>
             </div>
-        );
-    }
+        )
+    
 }
 
-export default SellForm;
+export default SellForm 

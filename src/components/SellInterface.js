@@ -29,16 +29,21 @@ export class SellInterface extends React.Component {
     showSellForm = () => {
         this.setState({sellFormVisible: true});
     }
+//выключить попап?
+    handleMouse = e => {
+        console.log('hi');
+
+    }
     
     render() {
         console.log(this.state);
-
+        
         return (
             <div>
                 <h1>Sell your shit</h1>
                 <button onClick={this.showSellForm} id="addButton">+ Add some shit</button>
                 {this.state.sellFormVisible ?
-                <SellForm/>
+                <SellForm onClick={this.handleMouse} />
                 :
                 null}
                 {this.state.productObjs.map(ele => (
