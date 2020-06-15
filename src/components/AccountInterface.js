@@ -17,7 +17,7 @@ export class AccountInterface extends Component {
         }
     }
 
-    componentWillMount = () =>
+    getSnapshotBeforeUpdate = () =>
         this.fetchUserData()
 
     fetchUserData = () => 
@@ -35,10 +35,11 @@ export class AccountInterface extends Component {
         this.setState({ email: uData.email })
         this.setState({ createdAt: Date(uData.createdAt) })
         this.setState({ ownedProduct: uData.products })
-        this.settingLikedProducts(uData.likedProducts.arrayOfIDs.split(','))
+        this.settingLikedProducts(uData.likedProducts.arrayOfIDs)
     }
 
     GetFilteredProducts = async likedProducts => {
+        console.log('qwe')
         likedProducts = Array.from(new Set(likedProducts))
         const queryForLikedProducts = likedProducts.join('&id_in=')
         const answer = await Axios.get(`${this.devURL}/products?id_in=${queryForLikedProducts}`)
@@ -49,9 +50,13 @@ export class AccountInterface extends Component {
 
     settingLikedProducts = async likedProducts => {
         const filteredProducts = await this.GetFilteredProducts(likedProducts)
-        this.setState({ likedProducts: [...filteredProducts] })
+        console.log(filteredProducts)
+        this.setState({ likedProducts: [filteredProducts] })
     }
         
+    handleClick = e => {
+        this.fetchUserData()
+    }
 
     render() {
 
