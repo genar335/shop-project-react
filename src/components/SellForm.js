@@ -59,6 +59,7 @@ export class SellForm extends React.Component {
                 alert(`${error}`);
             });
         } else {
+            console.log(this.props.formVisibility);
             alert('You can\'t sell nothing.');
             return;
         }

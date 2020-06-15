@@ -38,7 +38,9 @@ export class SellInterface extends React.Component {
                 <h1>Sell your shit</h1>
                 <button onClick={this.showSellForm} id="addButton">+ Add some shit</button>
                 {this.state.sellFormVisible ?
-                <SellForm/>
+                <SellForm
+                    formVisibility = {this.state.sellFormVisible}
+                />
                 :
                 null}
                 {this.state.productObjs.map(ele => (
