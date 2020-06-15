@@ -29,23 +29,22 @@ export class SellInterface extends React.Component {
     showSellForm = () => {
         this.setState({sellFormVisible: true});
     }
-//выключить попап?
-    handleMouse = e => {
-        console.log('hi');
-
-    }
+    
+    closeForm = newValue => {
+        console.log(newValue);
+        this.setState({sellFormVisible: newValue});
+    } 
     
     render() {
         console.log(this.state);
-        
+        if (this.state.sellFormVisible) {
         return (
             <div>
                 <h1>Sell your shit</h1>
                 <button onClick={this.showSellForm} id="addButton">+ Add some shit</button>
-                {this.state.sellFormVisible ?
-                <SellForm onClick={this.handleMouse} />
-                :
-                null}
+                <SellForm
+                    handleClose={this.closeForm}
+                />
                 {this.state.productObjs.map(ele => (
                 <ItemToSell
                     id = {ele.id}
@@ -60,6 +59,26 @@ export class SellInterface extends React.Component {
                 ))}
             </div>
         );
+        } else { 
+            return(
+                <div>
+                <h1>Sell your shit</h1>
+                <button onClick={this.showSellForm} id="addButton">+ Add some shit</button>
+                {this.state.productObjs.map(ele => (
+                <ItemToSell
+                    id = {ele.id}
+                    name = {ele.name}
+                    price = {ele.price}
+                    description = {ele.description}
+                    mainPhoto = {ele.mainPhoto}
+                    likes = {ele.likes}
+                    featured = {ele.featured}
+                    extraInfo = {ele.extraInfo}
+                />
+                ))}
+            </div>
+            ) 
+        }
     }
 }
 

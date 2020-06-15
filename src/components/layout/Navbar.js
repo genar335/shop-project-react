@@ -30,7 +30,6 @@ export class Navbar extends Component {
                     <img src={burger} alt="Oops..." id="burger-icon" onClick={this.burgerAppearance}/>
                     
                         <div id="link-container" onClick={this.burgerAppearance} >
-                            
                             <Link className="nav-link" to="/home">Home</Link>
                             <Link className="nav-link" to="/search">Search</Link>
                             <Link className="nav-link" to="/buy">Buy</Link>

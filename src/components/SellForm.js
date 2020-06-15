@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import './componentStyles/SellForm.scss';
+import cross from '../GAssests/cross.svg';
 
 function SellForm(props) {
 
@@ -8,6 +9,7 @@ function SellForm(props) {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [extraInfo, setExtraInfo] = useState('');
+    //const [visibility, setVisibility] = useState(true);
 
     const handleChangeOfValueItemName = (event) => {
         console.log(event.target);
@@ -37,9 +39,21 @@ function SellForm(props) {
         console.log('---');
     }
 
+    const closeForm = () => {
+        props.handleClose(false);
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         submitForm();
+        closeForm();
+    }
+
+    const onClickOutside = e => {
+        console.log(e.target.id);
+        if (e.target.id == 'modalBckg') {
+            closeForm();
+        }
     }
 
     const submitForm = () => {
@@ -57,43 +71,46 @@ function SellForm(props) {
                 console.log(error);
                 alert(`${error}`);
             });
-        } /*else {
+        } else {
             alert('You can\'t sell nothing.');
             return;
-        }*/
+        }
     }
 
-    
-        return (
-            <div className="modalContainerBackground" id="testModal" onSubmit={handleSubmit}>
-                <div className="modalContainer">
-                    <form className="itemForm">
-                        <h3 id="sellFormHeader">Sell something!</h3>
-                        <div className="inputDiv" id="nameField">
-                            <label className="itemNameInput">Name:</label>
-                            <input type="text" name="itemName" className="itemInput" onChange={handleChangeOfValueItemName}></input>
-                        </div>
-                        <div className="inputDiv" id="descriptionField">
-                            <label className="itemDescriptionInput">Description:</label>
-                            <input type="text" name="itemDescription" className="itemInput" onChange={handleChangeOfValueItemDescription}></input>
-                        </div>
-                        <div className="inputDiv" id="priceField">
-                            <label className="itemPriceInput">Price:</label>
-                            <input type="text" name="itemPrice" className="itemInput" onChange={handleChangeOfValueItemPrice}></input>
-                        </div>
-                        <div className="inputDiv" id="extraInfoField">
-                            <label className="itemExtraInfoInput">Extra Info:</label>
-                            <input type="text" name="itemExtraInfo" className="itemInput" onChange={handleChangeOfValueItemExtraInfo}></input>
-                        </div>
-                        <div className="buttonContainer">
-                            <input type="submit" name="submittedData" id="submitButton" value="Submit!"></input>
-                            
-                        </div>
-                    </form>
-                </div>
+    return (
+        <div className="modalContainerBackground" id="modalBckg" onSubmit={handleSubmit}
+            onClick={onClickOutside}
+        >
+            <div className="modalContainer">
+            <img src={cross} alt="krestik" id="crossBtn" onClick={closeForm}></img>
+                <form className="itemForm">
+                    <h3 id="sellFormHeader">Sell something!</h3>
+                    <div className="inputDiv" id="nameField">
+                        <label className="itemNameInput">Name:</label>
+                        <input type="text" name="itemName" className="itemInput" onChange={handleChangeOfValueItemName}></input>
+                    </div>
+                    <div className="inputDiv" id="descriptionField">
+                        <label className="itemDescriptionInput">Description:</label>
+                        <input type="text" name="itemDescription" className="itemInput" onChange={handleChangeOfValueItemDescription}></input>
+                    </div>
+                    <div className="inputDiv" id="priceField">
+                        <label className="itemPriceInput">Price:</label>
+                        <input type="text" name="itemPrice" className="itemInput" onChange={handleChangeOfValueItemPrice}></input>
+                    </div>
+                    <div className="inputDiv" id="extraInfoField">
+                        <label className="itemExtraInfoInput">Extra Info:</label>
+                        <input type="text" name="itemExtraInfo" className="itemInput" onChange={handleChangeOfValueItemExtraInfo}></input>
+                    </div>
+                    <div className="buttonContainer">
+                        <input type="submit" name="submittedData" id="submitButton" value="Submit!"></input>
+                    </div>
+                </form>
+                
+
             </div>
-        )
-    
+        </div> 
+    )
+
 }
 
 export default SellForm 
