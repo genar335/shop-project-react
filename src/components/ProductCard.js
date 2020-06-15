@@ -114,7 +114,9 @@ export class ProductCard extends React.Component {
                     <img src={`${this.getMainImg(this.props.productMainImage)}`} 
                         alt="" className="MainIMG"/>
                     {/* <img src={Heart} alt="Oops" id="heart" onClick={this.handleHeart} liked={this.props.liked} ></img> */}
-                    <HeartIcon liked={this.state.heartIsChecked} />
+                    <HeartIcon liked={this.state.heartIsChecked} 
+                        productInfo={this.props}
+                    />
                 </div>
                 <h2 id="product-description">{this.props.productName}</h2>
             </div>

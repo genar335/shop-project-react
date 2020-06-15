@@ -14,82 +14,36 @@ import '../componentStyles/HeartStyle.scss'
 export class HeartIcon extends Component {
     constructor(props) {
         super(props)
+        this.devURL = 'http://localhost:1337/'
         this.state = {
             heartState: this.props.liked || false
         }
     }
 
-    addingMoreLove = (arrayToAdd) => {
-        Axios({
-            method: 'put',
-            url: `http://localhost:1337/users/${sessionStorage.uID}`,
-            headers: {
-                Authorization: `Bearer ${sessionStorage.jwtToken}`
-            },
-            data: {
-                likedProducts: {
-                    arrayOfIDs: arrayToAdd
-                }
-            }
-        })
-            .then(res => console.log(res.data))
+    linkingProductToAHeart = async () => {
+        console.log(this.props.productInfo.id)
+        const pData = await Axios.get(`${this.devURL}products/${this.props.productInfo.id}`)
+            .then(res => res.data)
             .catch(err => console.log(err))
-    }
-    
-    destroyingLove = (arrayToModify, idToRemove) => {
-        const arrayToAdd = arrayToModify.filter(ele => ele !== idToRemove)
-        Axios({
-            method: 'put',
-            url: `http://localhost:1337/users/${sessionStorage.uID}`,
-            headers: {
-                Authorization: `Bearer ${sessionStorage.jwtToken}`
-            },
-            data: {
-                likedProducts: {
-                    arrayOfIDs: arrayToAdd
-                }
-            }
-        })
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
+        console.log(pData)
+        
     }
 
-    fetchingExistingLove = (idOfClikedHeart, tag) => {
-        console.log(idOfClikedHeart)
-        let likedProductsArray = []
-        Axios.get(`http://localhost:1337/users/${sessionStorage.uID}`, {
-            headers: {
-                Authorization:
-                    `Bearer ${sessionStorage.jwtToken}`
-            },
-        }).then(res => {
-                likedProductsArray = [...res.data.likedProducts.arrayOfIDs, idOfClikedHeart]
-                likedProductsArray = Array.from(new Set(likedProductsArray))
-                console.log(likedProductsArray)
-                tag ?
-                this.addingMoreLove(likedProductsArray) :
-                this.destroyingLove(likedProductsArray, idOfClikedHeart)
-            })
-          .catch(err => console.log(err))        
-    }
-
-    activatingHeart = eventTarget => {
+    activatingHeart = idOfItem => {
+        console.log(idOfItem)
         this.setState({ heartState: true })
-        console.log(eventTarget)
-        this.fetchingExistingLove(eventTarget.parentNode.parentNode.id, true)
+        this.linkingProductToAHeart()
     }
 
-    deactivatingTheHeart = eventTarget => {
+    deactivatingTheHeart = idOfItem => {
+        console.log(idOfItem)
         this.setState({ heartState: false })
-        console.log('heya')
-        console.log(eventTarget.parentNode.parentNode.id)
-        this.fetchingExistingLove(eventTarget.parentNode.parentNode.id, false)
     }
 
     handleHeartIconClick = e => 
         (this.state.heartState === true) ? 
-            this.deactivatingTheHeart(e.target) :
-            this.activatingHeart(e.target)
+            this.deactivatingTheHeart() :
+            this.activatingHeart()
     
 
     render() {

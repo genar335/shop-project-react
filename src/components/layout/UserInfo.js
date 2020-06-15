@@ -81,7 +81,10 @@ export class UserInfo extends React.Component {
                     <h3>Stuff you own:</h3>
                     <ProductCardCollection products={ this.state.ownedProductsObjs } /> 
                     <h3>Stuff you like:</h3>
-                    <ProductCardCollection products={ this.state.likedProductsObjs } />
+                    <ProductCardCollection 
+                        products={ this.state.likedProductsObjs } 
+                        liked={true}
+                        />
                 </div>
             )
         }

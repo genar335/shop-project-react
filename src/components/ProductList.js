@@ -16,15 +16,6 @@ export class ProductList extends React.Component {
     state = {
         products: []
     }
-
-
-    /* componentDidMount() {
-        Axios.get(`${this.devURL}products`)
-            .then(response => {
-                this.setState.products = response.data
-                console.log(response.data)
-            })
-    } */
     
     componentDidMount() {
         fetch(`${this.devURL}products`)
