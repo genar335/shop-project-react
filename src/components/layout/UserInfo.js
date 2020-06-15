@@ -30,12 +30,10 @@ export class UserInfo extends React.Component {
     //
 
     fetchingAssociatedProducts = async (userInfo = this.state.userInfo) => {
-        let {likedProducts, ownedProducts} = userInfo
-        console.log(likedProducts, ownedProducts)
-        ownedProducts = await Axios.get(`${this.devURL}/products?id_in=${ownedProducts.join('&id_in=')}`)
-            .then(res => res.data)
-            .catch(err => console.log(err))
-        this.setState({ ownedProductsObjs: ownedProducts })
+        let {liked_products, ownedProducts} = userInfo
+        console.log(liked_products, ownedProducts)
+        ownedProducts = await this.fetchingOwnedProducts(ownedProducts)
+        liked_products = await this.fetchingLikedProducts(liked_products)
         console.log(this.state.ownedProductsObjs)
     }    
     
@@ -56,8 +54,23 @@ export class UserInfo extends React.Component {
         this.fetchySwitch = false
     //
 
-    handleClick = e => 
-        this.fetchingUserData()
+    async fetchingLikedProducts(liked_products) {
+        liked_products = await Axios.get(`${this.devURL}/products?id_in=${liked_products.join('&id_in=')}`)
+            .then(res => res.data)
+            .catch(err => console.log(err))
+        this.setState({ likedProductsObjs: liked_products })
+        return liked_products
+    }
+
+    async fetchingOwnedProducts(ownedProducts) {
+        ownedProducts = await Axios.get(`${this.devURL}/products?id_in=${ownedProducts.join('&id_in=')}`)
+            .then(res => res.data)
+            .catch(err => console.log(err))
+        this.setState({ ownedProductsObjs: ownedProducts })
+        return ownedProducts
+    }
+
+    //
 
     render() {
         if (this.state.userInfo.id) {
@@ -67,6 +80,8 @@ export class UserInfo extends React.Component {
                     <h3>Your email: {this.state.userInfo.email}</h3>
                     <h3>Stuff you own:</h3>
                     <ProductCardCollection products={ this.state.ownedProductsObjs } /> 
+                    <h3>Stuff you like:</h3>
+                    <ProductCardCollection products={ this.state.likedProductsObjs } />
                 </div>
             )
         }
