@@ -35,7 +35,7 @@ export class AccountInterface extends Component {
         this.setState({ email: uData.email })
         this.setState({ createdAt: Date(uData.createdAt) })
         this.setState({ ownedProduct: uData.products })
-        this.settingLikedProducts(uData.likedProducts.arrayOfIDs.split(','))
+        this.settingLikedProducts(uData.likedProducts.arrayOfIDs)
     }
 
     GetFilteredProducts = async likedProducts => {
